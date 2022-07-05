@@ -41,10 +41,38 @@ public class MainApp {
         actualUrl= selenium.getUrl();
         assertEquals(actualUrl, "https://demo.guru99.com/test/newtours/destination.php");
         selenium.printUrl();
+        Thread.sleep(10000);
+
+        System.out.println("sixth and seventh tasks done.\n\n\n");
+        selenium.getDriver().findElement(By.xpath("//img[@ src='images/home.gif']")).click();
+        selenium.setUrl(selenium.getDriver().getCurrentUrl());
+        actualUrl= selenium.getUrl();
+        assertEquals(actualUrl, "https://demo.guru99.com/test/newtours/index.php");
+        selenium.printUrl();
         Thread.sleep(5000);
         System.out.println("sixth and seventh tasks done.\n\n\n");
+        
+        try {
+            link= selenium.getDriver().findElement(By.linkText("SIGN-OFF"));
+            link.click();
+            selenium.setUrl(selenium.getDriver().getCurrentUrl());
+            actualUrl= selenium.getUrl();
+            assertEquals(actualUrl, "https://demo.guru99.com/test/newtours/index.php");
+            selenium.printUrl();
+            Thread.sleep(5000);
+            System.out.println("sixth and seventh tasks done.\n\n\n");
 
-        selenium.getDriver().quit();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        finally {
+            selenium.getDriver().quit();
+        }
+
+
+
+
+
     }
 
     private static void assertEquals(String actualUrl, String expectedUrl) {
@@ -55,7 +83,7 @@ public class MainApp {
         } else {
             System.out.println("Test Failed");
             System.out.println("expected url is "+expectedUrl);
-            System.out.println("expected url is "+actualUrl);
+            System.out.println("actual url is "+actualUrl);
         }
     }
 
